@@ -34,4 +34,7 @@ COPY bin/vpnc.sh /etc/service/vpnc/run
 ##TODO: Add danted proxy service configuration
 # EXPOSE 8888 # Used for danted proxy service
 EXPOSE 22
+
+WORKDIR /root
+
 CMD ["dumb-init", "/etc/service/vpnc/run"]

@@ -13,8 +13,9 @@ function createContainerKeys () {
   sshuser="${4:-root}"
   sshalias="sshvpnc"
   envfile=".env"
+
   if [ -x "$(command -v ssh-keygen)" ]; then
-    if [[ ${overwrite,,} = "true" ]]; then
+    if [[ $overwrite = "true" ]]; then
       echo "Creating VPNC ssh key ${keyname} to access container..."
       rm -rf "${keyname}"
       rm -rf "${keyname}.pub"
@@ -32,7 +33,7 @@ function createContainerKeys () {
       cat > bin/${sshalias} <<EOF
       #!/usr/bin/env bash
       set -xv
-      ssh -o "StrictHostKeyChecking=no" -i "${keyname}" -p ${sshport} ${sshuser}@127.0.0.1
+      ssh -o "StrictHostKeyChecking=no" -i "${keyname}" -p ${sshport} ${sshuser}@127.0.0.1 -A
 EOF
       [[ -s bin/"${sshalias}" ]] && chmod a+x bin/"${sshalias}"
       echo "Run the following to access the container after start:"

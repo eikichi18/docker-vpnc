@@ -8,8 +8,6 @@ services:
   cap_add:
     - NET_ADMIN
   restart: unless-stopped
-  # devices:
-  #   - /dev/net/tun
   ports:
     - "${VPNC_PROXY_PORT:-8899}:8899"
     - "${VPNC_SSHD_PORT:-2299}:22"
@@ -23,3 +21,5 @@ services:
     - VPNC_PASSWORD=${VPNC_PASSWORD}
     - VPNC_SSHD_AUTHORIZED_KEYS=${VPNC_SSHD_AUTHORIZED_KEYS}
     - CREATE_TUN_DEVICE=${CREATE_TUN_DEVICE:-true}
+  volumes:
+    - ~/.ssh/config:/root/.ssh/config
