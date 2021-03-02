@@ -2,3 +2,4 @@
 bin/sshvpnc
 vpncsshkey
 vpncsshkey.pub
+data/
